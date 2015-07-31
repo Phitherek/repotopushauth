@@ -53,4 +53,11 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  post '/login', to: 'main#login', format: :json
+  post '/logout', to: 'main#logout', format: :json
+  post '/register', to: 'main#register', format: :json
+  post '/endpoint', to: 'main#endpoint', format: :json
+
+  root to: 'main#index'
 end

@@ -19,3 +19,5 @@
 *~
 *#
 .rvmrc
+database.yml
+config/initializers/pusher.rb

@@ -56,8 +56,12 @@ class MainController < ApplicationController
         else
             token = Token.find_by_content(params[:token])
             if token
-                response = Pusher[params[:channel_name]].authenticate(params[:socket_id])
-                render json: response
+                if !params[:channel_name].nil? && !params[:channel_name].empty? && !params[:socket_id].nil? && !params[:socket_id].empty? && params[:channel_name].to_s == 'private-' + token.user.username
+                    response = Pusher[params[:channel_name]].authenticate(params[:socket_id])
+                    render json: response
+                else
+                    render status: 403, text: "Forbidden"
+                end
             else
                 render status: 403, text: "Forbidden"
             end
